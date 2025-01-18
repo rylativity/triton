@@ -1,0 +1,18 @@
+services:
+  
+  server:
+    build: ./server
+    ports: 
+      - 8000:8000
+      - 8001:8001
+      - 8002:8002
+    # command: ["tritonserver", "--model-repository", "/server/model_repository"]
+    # volumes:
+    #   - ./server/model_repository:/models
+  
+  client:
+    build: ./client
+    command: ["image_client", "-m", "densenet_onnx", "-c", "3", "-s", "INCEPTION", "/workspace/images/mug.jpg"]
+    network_mode: host
+    depends_on:
+      - server
