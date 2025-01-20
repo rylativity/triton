@@ -1,0 +1,31 @@
+# Triton backend to use
+backend: "python"
+
+# Hugging face model
+parameters: {
+  key: "huggingface_model",
+  value: {string_value: "Qwen/Qwen2.5-0.5B-Instruct"}
+}
+# The maximum number of output tokens to generate
+parameters: {
+  key: "max_output_length",
+  value: {string_value: "100"}
+}
+
+# Triton should expect as input a single string named 'text_input'
+input [
+  {
+    name: "text_input"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+# Triton should expect to respond with a single string
+output [
+  {
+    name: "text_output"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  }
+]

@@ -1,0 +1,6 @@
+torch>=2.5.1
+torchvision 
+torchaudio
+transformers>=4.48.0
+Image
+accelerate>=0.26.0

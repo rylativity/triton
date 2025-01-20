@@ -1,0 +1,4 @@
+jupyterlab
+pandas
+tritonclient[http]
+# tritonclient[http, cuda]

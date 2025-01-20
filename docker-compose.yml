@@ -6,6 +6,9 @@ services:
       - 8000:8000
       - 8001:8001
       - 8002:8002
+    environment:
+      - HUGGINGFACE_TOKEN=''
+      # - HUGGINGFACE_MODEL_NAME=distilbert/distilbert-base-uncased
     # command: ["tritonserver", "--model-repository", "/server/model_repository"]
     # volumes:
     #   - ./server/model_repository:/models
@@ -16,3 +19,13 @@ services:
     network_mode: host
     depends_on:
       - server
+  
+  jupyter:
+    build: 
+      context: ./jupyter
+    ports: 
+      - 8888:8888
+    volumes:
+      - ./data:/workspace/data
+      - ./jupyter/notebooks/:/workspace/notebooks/
+      - ~/.cache/:/root/.cache/
